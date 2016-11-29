@@ -1,0 +1,274 @@
+/*******************************************************************************************
+                                    for ALL WEBPAGES
+/******************************************************************************************/
+body {
+    font-family: monospace;
+    margin-top: 140px;
+    margin-bottom: 70px;
+}
+
+
+
+/*                                NAVIGATION BAR
+-------------------------------------------------------------------------------------------*/
+nav {
+    height: 80px;
+    font-size: 16px;
+}
+
+.navbar-brand img {
+    border: solid 2px #fff;
+    border-radius: 10px;
+}
+
+.navbar-brand img:hover {
+    border-style: dashed;
+}
+
+#ul-center{
+    margin-top: 13px;
+    margin-left: 50px;
+    text-transform: uppercase;
+}
+
+#ul-center li a{
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid #aaa 2px;
+    border-radius: 20px;
+    -webkit-transition: padding 1s ease-in-out;
+    transition: padding 1s ease-in-out;
+}
+
+#ul-center li a:hover{
+    padding-left: 30px;
+    padding-right: 30px;
+    border: solid #fff 2px;
+    background: #fff;
+    color: #000;
+}
+
+#ul-center li.active a{
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid #bbb 2px;
+    background: #bbb;
+    color: #000;
+}
+
+#ul-center li.active a:hover{
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: solid #fff 2px;
+    background: #fff;
+    color: #000;
+}
+
+#ul-right{
+    margin-top: 13px;
+    margin-right: 20px;
+}
+
+#ul-right li a{
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid #aaa 2px;
+    border-radius: 50px;
+    -webkit-transition: padding 1s ease-in-out;
+    transition: padding 1s ease-in-out;
+}
+
+#ul-right li a:hover{
+    padding-left: 30px;
+    padding-right: 30px;
+    border: solid #fff 2px;
+    background: #fff;
+    color: #000;
+}
+
+#ul-right li.active a{
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid #bbb 2px;
+    background: #bbb;
+    color: #000;
+}
+
+#ul-right li.active a:hover{
+    padding-left: 30px;
+    padding-right: 30px;
+    border: solid #fff 2px;
+    background: #fff;
+    color: #000;
+}
+
+
+
+/*                                 TEXT FIELD
+ -----------------------------------------------------------------------------------------*/
+input[type="text"]{
+    -webkit-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+input[type="text"]:focus{
+    width: 105%;
+}
+
+
+
+/*                                      BUTTON
+ -----------------------------------------------------------------------------------------*/
+#div-body button{
+    background-color: #222;
+    color: #fff;
+    -webkit-transition: padding 0.5s ease-in-out;
+    transition: padding 0.5s ease-in-out;
+}
+
+#div-body button:hover{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+
+/*                                        LABEL
+ ------------------------------------------------------------------------------------------*/
+label {
+    font-weight: lighter;
+}
+
+
+
+/*                                        GLYPHCON
+ ------------------------------------------------------------------------------------------*/
+.form-group > .glyphicon-ok {
+	color:#3c9a5f;
+}
+
+.form-group > .glyphicon-refresh {
+	color:#ff8000;
+}
+
+.form-group > .glyphicon-remove {
+	color:#ea2f10;
+}
+
+.form-group > select ~ .glyphicon-refresh,.form-group > select ~ .glyphicon-ok,.form-group > select ~ .glyphicon-remove {
+	right:10px;
+}
+
+
+
+/*******************************************************************************************
+                                            INDEX
+/*******************************************************************************************/
+#body-index{
+    background-image: url("/e-auction/site/img/background-index.jpg");
+    background-size: cover;
+}
+
+#body-index .modal-dialog{
+    width: 25%;
+    margin-top: 150px;
+    padding: 40px 40px 40px 40px;
+    border-radius: 30px;
+    background-color: #ddd;
+}
+
+
+
+/********************************************************************************************
+                                        CREATE PROFILE
+********************************************************************************************/
+
+#div-create-profile .panel-heading h1{
+    font-size: 20px;
+    text-transform: full-width;
+}
+
+#div-create-profile .panel-body{
+    padding: 30px;
+}
+
+#div-create-profile .panel{
+    margin-bottom: 10px;
+}
+
+#div-create-profile label span{
+    color: #ff0000;
+}
+
+#frmProfilePhoto img{
+    height: 200px;
+    width: 200px;
+    padding: 10px;
+    background-color: #eee;
+    border: 2px solid #000;
+    border-radius: 20px;
+}
+
+
+
+
+/*******************************************************************************************
+                                    MY ADVERTISEMENT
+/*******************************************************************************************/
+#adv-base{
+    border: solid #ccc 2px;
+    border-radius: 0px;
+    padding: 30px 30px 30px 30px;
+    font-size: 18px;
+}
+
+#img-my-adv{
+    height: 250px;
+    width: 250px;
+    border: solid #aaa 1px;
+    border-radius: 0px;
+}
+
+
+
+/*******************************************************************************************
+                                    ADMIN WEBPAGE PATH DATABASES
+/*******************************************************************************************/
+.div-section{
+    margin-bottom: 100px;
+    padding: 0px 30px 30px 30px;
+    border: solid 2px #ddd;
+    border-radius: 15px;
+}
+
+.div-section > label{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.div-header{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.div-header h2{
+    color: #fff;
+    background-color: #444;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.div-new-entry{
+    padding: 20px;
+    border: solid 1px #ccc;
+
+}
