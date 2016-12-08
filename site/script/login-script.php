@@ -2,10 +2,13 @@
     require_once "../include/db-session.inc.php";
     require_once "../include/jsonwrapper/jsonwrapper.inc.php";
 
+
     // fetch the email from form-validation.js page
-    $email = filter_input(INPUT_POST, "txtEmail");
-    $password = filter_input(INPUT_POST, "pwdPassword");
-    $rememberMe = filter_input(INPUT_POST, "chkRemember_me")
+    $email          =   strtolower(filter_input(INPUT_POST, "txtEmail"));
+    $password       =   filter_input(INPUT_POST, "pwdPassword");
+    $rememberMe     =   filter_input(INPUT_POST, "chkRemember_me");
+
+
 
     // verifying $priEmail already exists or not in table MEMBER_MASTER
     $email_arr = $database->select("MEMBER_MASTER", "MEMBER_ID",[

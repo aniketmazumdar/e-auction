@@ -3,7 +3,7 @@
     require_once "../include/jsonwrapper/jsonwrapper.inc.php";
 
     // fetch the email from form-validation.js page
-    $email = filter_input(INPUT_POST, "email");
+    $email = strtolower(filter_input(INPUT_POST, "email"));
 
 
     // verifying $priEmail already exists or not in table MEMBER_MASTER
@@ -15,7 +15,8 @@
 
     if (sizeof($email_arr) == 0) {  //  if entered email doesn't exist in database
         echo json_encode(true);
-    } else {
+    }
+    else {      //  if entered email already exists in database
         echo json_encode(false);
     }
 ?>

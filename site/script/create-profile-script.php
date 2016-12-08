@@ -17,14 +17,22 @@
     $address1           =  filter_input(INPUT_POST, "txtAddress1");
     $address2           =  filter_input(INPUT_POST, "txtAddress2");
     $zipCode            =  filter_input(INPUT_POST, "txtZipCode");
-    $altEmail           =  filter_input(INPUT_POST, "txtAlternateEmail");
+    $altEmail           =  strtolower(filter_input(INPUT_POST, "txtAlternateEmail"));
     $phone              =  filter_input(INPUT_POST, "txtPhone");
     $fax                =  filter_input(INPUT_POST, "txtFax");
     $secQues            =  filter_input(INPUT_POST, "selSecurityQuestion");
     $secAns             =  filter_input(INPUT_POST, "txtSecurityAnswer");
 
+
+    // current datetime
+    date_default_timezone_set('Asia/Kolkata');
+    $currentTimestamp = date('Y-m-d h:i:s');
+
+
     // initialised variables
-    $data_insert_successful = false;
+    $isDataInserted     = false;
+    $isDataUpdated      = false;
+    $isEmailExist       = false;
 
 
     session_start();
@@ -34,66 +42,76 @@
         $password   =  filter_var($_SESSION['password']);
 
 
-        // registration by admin or user
-        if(isset($_SESSION["adminId"])){   // registration by admin
-            $createdBy  =  filter_var($_SESSION["adminId"]);
-        }
-        else{   // registration by user
-            // last inserted increamented value for TABLE MEMBER_MASTER
-            // $createdBy  =  $database->select(INFORMATION_SCHEMA.TABLES, AUTO_INCREMENT,[
-            //     TABLE_NAME => "MEMBER_MASTER"
-            // ]);
-            $query = mysql_query("SELECT MAX(MEMBER_ID) FROM MEMBER_MASTER");
-            $f = mysql_fetch_array($query);
-            $createdBy = $f['MEMBER_MASTER'];
-        }
-
-
-        // current datetime
-        date_default_timezone_set('Asia/Kolkata');
-        $currentTimestamp = date('Y-m-d h:i:s');
-
-        // data entry in MEMBER_MASTER table
-        $data_insert_successful = $database->insert("MEMBER_MASTER", [
-            "MEMBER_ID"                         => '',  //  auto increamented
-            "MEMBER_TYPE"                       => $memberType,
-            "MEMBER_SALUTATION"                 => $salutation,
-            "MEMBER_FIRST_NAME"                 => $firstName,
-            "MEMBER_MIDDLE_NAME"                => $middleName,
-            "MEMBER_LAST_NAME"                  => $lastName,
-            "MEMBER_DATE_OF_BIRTH_STAMP"        => $dateOfBirth,
-            "MEMBER_COUNTRY"                    => $country,
-            "MEMBER_STATE"                      => $state,
-            "MEMBER_DISTRICT"                   => $district,
-            "MEMBER_CITY"                       => $city,
-            "MEMBER_ADDRESS_1"                  => $address1,
-            "MEMBER_ADDRESS_2"                  => $address2,
-            "MEMBER_ZIP_CODE"                   => $zipCode,
-            "MEMBER_EMAIL"                      => $email,
-            "MEMBER_ALTERNATE_EMAIL"            => $altEmail,
-            "MEMBER_PHONE"                      => $phone,
-            "MEMBER_FAX"                        => $fax,
-            "MEMBER_PASSWORD"                   => $password,
-            "MEMBER_SECURITY_QUESTION"          => $secQues,
-            "MEMBER_SECURITY_ANSWER"            => $secAns,
-            "MEMBER_PHOTO"                      => '',
-            "MEMBER_CREATION_STAMP"             => $currentTimestamp,
-            "MEMBER_CREATED_BY"                 => $createdBy,
-            "MEMBER_UPDATION_STAMP"             => '',
-            "MEMBER_UPDATED_BY"                 => ''
+        $isEmailExist  =  $database->select("MEMBER_MASTER", "MEMBER_ID", [
+            "MEMBER_EMAIL" => $email
         ]);
-        $data = "('', '$memberType', '$salutation', '$firstName', '$middleName', '$lastName', '$dateOfBirth', '$country', '$state', '$district', '$city', '$address1', '$address2', '$zipCode', '$email', '$altEmail', '$phone', '$fax', '$password', '$secQues', '$secAns','','$currentTimestamp','$createdBy', '', '')";
 
-        echo json_encode($data);
-        //form datas are saved in database successfully
-        // if($data_insert_successful){
-        //     echo json_encode(true);
-        // }
-        // else{
-        //     echo json_encode(false);
-        // }
+        if(empty($isEmailExist)){   // if MEMBER_EMAIL doesn't exist
+            // data entry in MEMBER_MASTER table
+            $isDataInserted = $database->insert("MEMBER_MASTER", [
+                "MEMBER_ID"                         => '',  //  auto increamented
+                "MEMBER_TYPE"                       => $memberType,
+                "MEMBER_SALUTATION"                 => $salutation,
+                "MEMBER_FIRST_NAME"                 => $firstName,
+                "MEMBER_MIDDLE_NAME"                => $middleName,
+                "MEMBER_LAST_NAME"                  => $lastName,
+                "MEMBER_DATE_OF_BIRTH_STAMP"        => $dateOfBirth,
+                "MEMBER_COUNTRY"                    => $country,
+                "MEMBER_STATE"                      => $state,
+                "MEMBER_DISTRICT"                   => $district,
+                "MEMBER_CITY"                       => $city,
+                "MEMBER_ADDRESS_1"                  => $address1,
+                "MEMBER_ADDRESS_2"                  => $address2,
+                "MEMBER_ZIP_CODE"                   => $zipCode,
+                "MEMBER_EMAIL"                      => $email,
+                "MEMBER_ALTERNATE_EMAIL"            => $altEmail,
+                "MEMBER_PHONE"                      => $phone,
+                "MEMBER_FAX"                        => $fax,
+                "MEMBER_PASSWORD"                   => $password,
+                "MEMBER_SECURITY_QUESTION"          => $secQues,
+                "MEMBER_SECURITY_ANSWER"            => $secAns,
+                "MEMBER_PHOTO"                      => '',
+                "MEMBER_ACCOUNT_STATUS"             => '0',
+                "MEMBER_CREATION_STAMP"             => $currentTimestamp,
+                "MEMBER_CREATED_BY"                 => '',
+                "MEMBER_UPDATION_STAMP"             => '',
+                "MEMBER_UPDATED_BY"                 => ''
+            ]);
+            $data = "('', '$memberType', '$salutation', '$firstName', '$middleName', '$lastName', '$dateOfBirth', '$country', '$state', '$district', '$city', '$address1', '$address2', '$zipCode', '$email', '$altEmail', '$phone', '$fax', '$password', '$secQues', '$secAns', '', '0', '', '', '', '')";
+
+
+
+            // registration by admin or user
+            if(isset($_SESSION["adminId"])){   // registration by admin
+                $createdBy  =  filter_var($_SESSION["adminId"]);
+            }
+            else{   // registration by user
+                $createdBy  =  $database->select("MEMBER_MASTER", "MEMBER_ID", [
+                    "MEMBER_EMAIL" => $email
+                ]);
+            }
+
+            //updating createdBy column in database
+            $isDataUpdated  =  $database->update("MEMBER_MASTER", [
+                "MEMBER_CREATED_BY"  =>  $createdBy[0]
+            ],[
+                "MEMBER_EMAIL"  =>  $email
+            ]);
+
+
+            //form datas are saved in database successfully
+            if($isDataInserted && $isDataUpdated){
+                echo json_encode(true);
+            }
+            else{
+                echo json_encode(false);
+            }
+        }
+        else{   //  if MEMBER_EMAIL already exists
+            echo json_encode(false);
+        }
     }
-    else{       //  if session data doesn't exist
+    else{  //  if session data doesn't exist
         echo json_encode(false);
     }
 ?>

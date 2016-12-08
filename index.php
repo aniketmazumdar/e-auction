@@ -59,7 +59,7 @@
               <div class="modal-dialog" id="div-modal-dialog"></div>
             </div>
             <!-- Modal end -->
-            
+
         </div>
 
 
@@ -67,7 +67,6 @@
         <script src="/e-auction/site/js/jquery.min.js"></script>
 		<script src="/e-auction/site/js/bootstrap.min.js"></script>
 
-        <script src="/e-auction/site/js/style.js"></script>
-        <script src="/e-auction/site/js/form-validation.js"></script>
+        <script src="/e-auction/site/js/index.js"></script>
     </body>
 </html>

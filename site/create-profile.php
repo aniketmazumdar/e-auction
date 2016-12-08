@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!($_SESSION["email"] && $_SESSION["password"])){
+    if(empty($_SESSION["email"]) && empty($_SESSION["password"])){
         header("location: /e-auction/index.php");
     }
 
@@ -86,7 +86,7 @@
 
                     <!-- Start of personal-info div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-personal-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
                             <h1 class="panel-title">Personal Info</h1>
                         </div>
                         <div id="div-personal-info" class="panel-collapse collapse">
@@ -155,7 +155,7 @@
 
                     <!-- Start of mailing-address div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-mailing-address">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
                             <h1 class="panel-title">Mailing Address</h1>
                         </div>
                         <div id="div-mailing-address" class="panel-collapse collapse">
@@ -244,7 +244,7 @@
 
                     <!-- Start of contact-address div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-contact-address">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
                             <h1 class="panel-title">Contact Address</h1>
                         </div>
                         <div id="div-contact-address" class="panel-collapse collapse">
@@ -293,7 +293,7 @@
 
                     <!-- Start of security info div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-security-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
                               <h1 class="panel-title">Security Information</h1>
                         </div>
                         <div id="div-security-info" class="panel-collapse collapse">
@@ -322,86 +322,37 @@
                     </div>
                     <!-- End of security info div -->
 
+
+                    <!-- Start of profile photo div -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                              <h1 class="panel-title">Profile Photo</h1>
+                        </div>
+                        <div id="div-profile-photo" class="panel-collapse collapse">
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                    <!-- End of profile photo div -->
+
                 </div>
                 <!-- End of panel group div -->
 
                 <!-- Start of submit-button div -->
                 <div class="row text-center">
-                    <button type="button" class="btn btn-lg" id="btnCreateProfile">Save</button>
+                    <button type="button" class="btn btn-lg" id="btnSaveCreateProfile">Save</button>
+                    <button type="button" class="btn btn-lg" id="btnCompleteRegistration"><span class="glyphicon glyphicon-ok"></span> Complete Registration</button>
                 </div>
                 <!-- End of submit-button div -->
             </form>
             <!-- End of create profile form -->
 
-
-            <!-- Start of upload profile photo form -->
-            <form id="frmProfilePhoto" enctype="multipart/form-data">
-                <div class="panel panel-default" id="div-profile-photo">
-                    <div class="panel-heading text-center"><h4>Upload Profile Photo</h4></div>
-                    <div class="panel-body">
-                        <!-- Start of confirmation info about photo file -->
-                        <div class="row text-center">
-                            <br><br><a href="" data-toggle="modal" data-target="#myModal">Profile photo information</a>
-                        </div>
-                        <!-- End of confirmation info about photo file -->
-
-                        <!-- Start of profile-photo div -->
-                        <div class="row text-center">
-                            <div class="form-group has-feedback">
-                                <label for="filPhoto"><img src="/e-auction/site/img/logo-male.png" alt="profile photo" style="cursor: pointer"></label>
-                                <input type="file" class="form-control hide" id="filPhoto" name="filPhoto">
-                                <span class="glyphicon form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <!-- End of profile-photo div -->
-
-                        <!-- Start of upload-photo-button div -->
-                        <div class="row text-center" id="div-upload-photo">
-                            <button type="submit" class="btn btn-lg btn-primary" id="btnUploadPhoto"><span class="glyphicon glyphicon-arrow-up"></span> Upload</button>
-                        </div>
-                        <!-- End of upload-photo-button div -->
-
-                        <!-- Start of delete-photo-button div -->
-                        <div class="row text-center" id="div-delete-photo">
-                            <button type="button" class="btn btn-lg btn-danger" id="btnDeletePhoto"><span class="glyphicon glyphicon-trash"></span> Delete Photo</button>
-                        </div>
-                        <!-- End of delete-photo-button div -->
-                    </div>
-                </div>
-
-                <!-- Start of complete-button div -->
-                <div class="row text-center" id="div-upload-photo">
-                    <button type="button" class="btn btn-lg" id="btnComplete"><span class="glyphicon glyphicon-ok"></span> Complete Registration</button>
-                </div>
-                <!-- End of complete-button div -->
-            </form>
-            <!-- End of upload profile photo form -->
-
         </div>
-
-        <!-- Modal start -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-sm" id="div-modal-dialog">
-              <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <p>
-                            File formate should be jpg, jpeg, png or gif. <br><br>
-                            File size should be less than 500kb.
-                        </p>
-                   </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal end -->
-
 
 
         <script src="/e-auction/site/js/jquery.min.js"></script>
 		<script src="/e-auction/site/js/bootstrap.min.js"></script>
 
-        <script src="/e-auction/site/js/style.js"></script>
-        <script src="/e-auction/site/js/create-profile-form-validation.js"></script>
+        <script src="/e-auction/site/js/create-profile.js"></script>
 
     </body>
 </html>

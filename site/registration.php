@@ -39,4 +39,4 @@
 </form>
 
 
-<script src="/e-auction/site/js/registration-form-validation.js"></script>
+<script src="/e-auction/site/js/registration.js"></script>
