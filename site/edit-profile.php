@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(empty($_SESSION["email"]) && empty($_SESSION["password"])){
-        header("location: /e-auction/index.php");
-    }
+    // session_start();
+    // if(empty($_SESSION["email"]) && empty($_SESSION["password"])){
+    //     header("location: /e-auction/index.php");
+    // }
 
 
  ?>
@@ -29,46 +29,11 @@
 
     <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-action-tabs">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="<?php $page_index; ?>"><img src="/e-auction/site/img/icon.png" alt="icon" /></a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="div-action-tabs">
-              <ul class="nav navbar-nav" id="ul-center">
-                <li class="active"><a href="/e-auction/index.php">Home</a></li>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">All Item List <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="all_items.php?id=<?php echo id; ?>">Page 1-1</a></li>
-                  </ul>
-                </li>
-                <li><a href="about_us.php">About Us</a></li>
-                <li><a href="contact_us.php">Contact Us</a></li>
-              </ul>
-
-              <ul class="nav navbar-nav navbar-right" id="ul-right">
-                <li><a href="member_registration.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li class="active"><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-              </ul>
-            </div>
-
-        </nav>
-
-
-
 
         <div class="container" id="div-body">
 
             <!-- Start of create profile form -->
-            <form id="frmCreateProfile">
+            <form id="frmEditProfile">
                 <!-- Start of member type div -->
                 <div class="row" id="div-member-type">
                     <div class="pull-right">
@@ -86,7 +51,7 @@
 
                     <!-- Start of personal-info div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-personal-info">
                             <h1 class="panel-title">Personal Info</h1>
                         </div>
                         <div id="div-personal-info" class="panel-collapse collapse">
@@ -155,7 +120,7 @@
 
                     <!-- Start of mailing-address div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-mailing-address">
                             <h1 class="panel-title">Mailing Address</h1>
                         </div>
                         <div id="div-mailing-address" class="panel-collapse collapse">
@@ -244,7 +209,7 @@
 
                     <!-- Start of contact-address div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-contact-address">
                             <h1 class="panel-title">Contact Address</h1>
                         </div>
                         <div id="div-contact-address" class="panel-collapse collapse">
@@ -293,7 +258,7 @@
 
                     <!-- Start of security info div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-security-info">
                             <h1 class="panel-title">Security Information</h1>
                         </div>
                         <div id="div-security-info" class="panel-collapse collapse">
@@ -325,7 +290,7 @@
 
                     <!-- Start of profile photo div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-profile-photo">
                             <h1 class="panel-title">Profile Photo</h1>
                         </div>
                         <div id="div-profile-photo" class="panel-collapse collapse">
@@ -339,8 +304,7 @@
 
                 <!-- Start of submit-button div -->
                 <div class="row text-center">
-                    <button type="button" class="btn btn-lg" id="btnSaveCreateProfile">Save</button>
-                    <button type="button" class="btn btn-lg" id="btnCompleteRegistration"><span class="glyphicon glyphicon-ok"></span> Complete Registration</button>
+                    <button type="button" class="btn btn-lg" id="btnSaveEditProfile">Save</button>
                 </div>
                 <!-- End of submit-button div -->
             </form>

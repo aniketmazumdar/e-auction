@@ -39,7 +39,6 @@ $(document).ready(function(){
                     //alert(response)
                     if(resData){
                         window.location.pathname = "/e-auction/site/profile.php"
-                        //alert("Successfully logged in")
                     }
                     else{
                         alert("Email and password aren't matched")
@@ -48,7 +47,7 @@ $(document).ready(function(){
                 error: function(){
                     alert("Error occured")
                 }
-            })
+            });
         }
         else {
             alert("incorrect email formate!");

@@ -215,6 +215,7 @@ label {
     background-color: #eee;
     border: 2px solid #000;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 #frmProfilePhoto{
@@ -274,4 +275,72 @@ label {
     padding: 20px;
     border: solid 1px #ccc;
 
+}
+
+
+
+/*******************************************************************************************
+                                            PROFILE
+/*******************************************************************************************/
+
+#div-head-section {
+    background-image: url("/e-auction/site/img/background-head-section.jpg");
+    background-color: #550000;
+    padding: 20px;
+    color: #fff;
+    border-radius: 14px;
+    background-repeat: no-repeat;
+}
+
+#div-head-section a{
+    text-decoration: none;
+    color: #fff;
+}
+
+#div-profile-photo img {
+    height: 180px;
+    width: 180px;
+    border: 3px solid #eee;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 15px;
+    width: 581px;
+    margin-top: 7px;
+    height: 55px;
+}
+
+#div-foot-section {
+    margin-top: 7px;
+    margin-left: 150px;
+    margin-right: 150px;
+    font-size: 20px;
+    color: #fff;
+}
+
+#div-mailing-address {
+    border-radius: 15px;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    background-image: url("/e-auction/site/img/background-mailing-address.jpg");
+}
+
+#div-contact-address {
+    border-radius: 15px;
+    padding-top: 64px;
+    padding-bottom: 54px;
+    background-image: url("/e-auction/site/img/background-contact-address.jpg");
+}
+
+.modal-dialog img{
+    margin-top: 110px;
+    height: 340px;
+    width: 340px;
+    border-radius: 30px;
+    border: solid 3px #8C001A;
 }

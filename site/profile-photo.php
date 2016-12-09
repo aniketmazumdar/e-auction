@@ -8,7 +8,7 @@
 
         <!-- Start of profile-photo div -->
     	<div class="form-group has-feedback">
-    		<label for="filPhoto"><img id="img-profile-photo" alt="profile photo" style="cursor: pointer"></label>
+    		<label for="filPhoto"><img id="img-profile-photo" alt="profile photo"></label>
     		<input type="file" class="form-control hide" id="filPhoto" name="filPhoto">
     		<span class="glyphicon form-control-feedback"></span>
     	</div>
