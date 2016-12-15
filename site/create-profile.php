@@ -325,7 +325,7 @@
 
                     <!-- Start of profile photo div -->
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#div-create-profile" data-target="#div-profile-photo">
                             <h1 class="panel-title">Profile Photo</h1>
                         </div>
                         <div id="div-profile-photo" class="panel-collapse collapse">
@@ -339,8 +339,8 @@
 
                 <!-- Start of submit-button div -->
                 <div class="row text-center">
-                    <button type="button" class="btn btn-lg" id="btnSaveCreateProfile">Save</button>
-                    <button type="button" class="btn btn-lg" id="btnCompleteRegistration"><span class="glyphicon glyphicon-ok"></span> Complete Registration</button>
+                    <button type="button" class="btn btn-lg btn-default" id="btnSaveCreateProfile">Save</button>
+                    <button type="button" class="btn btn-lg btn-default" id="btnCompleteRegistration"><span class="glyphicon glyphicon-ok"></span> Complete Registration</button>
                 </div>
                 <!-- End of submit-button div -->
             </form>

@@ -1,3 +1,8 @@
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT']."/e-auction/site/script/profile-script.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en-IN">
     <head>
@@ -63,19 +68,19 @@
 
                 <!-- Start of profile-photo div -->
                 <div class="" id="div-profile-photo">
-                    <img id="img-profile-photo" src="/e-auction/site/img/logo-male.png" alt="profile photo" data-toggle="modal" data-target="#myModal">
+                    <img id="img-profile-photo" src="<?php echo $photo ?>" alt="profile photo" data-toggle="modal" data-target="#myModal">
                 </div>
                 <!-- End of profile-photo div -->
 
                 <!-- Start of member-name div -->
                 <div class="" id="div-member-name">
-                    <h1>Mr. Aniket Mazumdar</h1>
+                    <h1><?php echo $name ?></h1>
                 </div>
                 <!-- End of member-name div -->
 
                 <!-- Start of member-dob div -->
                 <div class="" id="div-member-name">
-                    <h4>Date of Birth: 02-03-1994</h4>
+                    <h4>Date of Birth: <?php echo $dateOfBirth ?></h4>
                 </div>
                 <!-- End of member-dob div -->
             </div>
@@ -83,24 +88,32 @@
 
 
             <div class="row btn-group-lg text-center" id="div-btn-group">
-                <button type="button" class="btn btn-lg" id="btn-mailing-address"><span class="glyphicon glyphicon-home"></span> Mailing Adress</button>
-                <button type="button" class="btn btn-lg" id="btn-contact-address"><span class="glyphicon glyphicon-envelope"></span> Contact Adress</button>
+                <button type="button" class="btn btn-lg btn-default" id="btn-mailing-address"><span class="glyphicon glyphicon-home"></span> Mailing Adress</button>
+                <button type="button" class="btn btn-lg btn-default" id="btn-contact-address"><span class="glyphicon glyphicon-envelope"></span> Contact Adress</button>
             </div>
 
 
             <div class="row panel-group text-center" id="div-foot-section">
                 <div class="panel-body" id="div-mailing-address">
                     <address>
-                        Address: hjvjhvkbkbkbkbkb <br>
-                        Katwa, Bardhaman, West Bengal <br>
-                        India, 713100
+                        <?php echo $addressLine1 ?> <br>
+                        <?php echo $addressLine2 ?> <br>
+                        <?php echo $addressLine3 ?>
                     </address>
                 </div>
 
                 <div class="panel-body" id="div-contact-address">
                     <address>
-                        <span class="glyphicon glyphicon-envelope"></span> aniketmazumdar1994@gmail.com <br>
-                        <span class="glyphicon glyphicon-phone"></span> 7602999141, <span class="glyphicon glyphicon-print"></span> 6765757
+                        <span class="glyphicon glyphicon-envelope"></span> <?php echo $email ?> <br>
+                        <span class="glyphicon glyphicon-phone"></span> <?php echo $phone ?>
+                        <?php
+                            if(isset($fax)){
+                        ?>
+                                , <span class="glyphicon glyphicon-print"></span>
+                        <?php
+                                echo $fax;
+                            }
+                        ?>
                     </address>
                 </div>
             </div>
@@ -110,12 +123,7 @@
         <!-- Modal start -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sm" id="div-modal-dialog">
-              <!-- Modal content-->
-
-
-                        <img src="/e-auction/site/img/logo-male.png" alt="profile-photo" id="img-large">
-
-
+                <img src="<?php echo $photo ?>" alt="profile-photo" id="img-large">
             </div>
         </div>
         <!-- Modal end -->

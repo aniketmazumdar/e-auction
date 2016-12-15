@@ -15,7 +15,7 @@
     // initialising variables
     $check          =   false;
     $isPhotoValid   =   true;
-    $message   =   "";
+    $message        =   false;
 
 
     //  checking file is actual image or not
@@ -70,7 +70,6 @@
             $message = "Photo uploading fail!";
         }
     }
-
 
     echo json_encode($message);     //  sending message
 ?>

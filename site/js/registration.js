@@ -18,9 +18,9 @@ $(document).ready(function(){
 
 
     // defining temp variables
-    var isValidEmail = false;
-    var isValidPassword = false;
-    var isMatchedPassword = false;
+    var isValidEmail        = false;
+    var isValidPassword     = false;
+    var isMatchedPassword   = false;
 
 
     // disabling input fields
@@ -45,9 +45,10 @@ $(document).ready(function(){
                         email : txtEmail.val()
                     },
                     success : function(response) {
-                        isValidEmail = $.parseJSON(response);
-
-                        if (isValidEmail) {     // emailId doesn't exist
+                        isEmailExist = $.parseJSON(response);
+                        //alert(response);
+                        if (isEmailExist == false) {     // emailId doesn't exist
+                            isValidEmail = true;
                             //alert("email-id valid!")
                             enabledFields();
                         }

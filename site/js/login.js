@@ -10,22 +10,18 @@ $(document).ready(function(){
     document.head.appendChild(imported);
 
 
-
     // creating variables for all input fields
     var txtEmail           =   $('#txtEmail')
     var pwdPassword        =   $('#pwdPassword')
 
-
     // for all fields data validation check
     var isValidEmail    =   false;
-
 
 
     // txtEmail formate validation check
     txtEmail.change(function() {
         isValidEmail = emailFormateValidationCheck(txtEmail);
     })
-
 
 
     $('#btnLogin').click(function() {

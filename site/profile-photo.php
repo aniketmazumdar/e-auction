@@ -16,7 +16,7 @@
 
         <!-- Start of upload-photo-button div -->
         <div id="div-upload-photo">
-        	<button type="submit" class="btn btn-lg btn-primary" id="btnUploadPhoto"><span class="glyphicon glyphicon-arrow-up"></span> Upload</button>
+        	<button type="submit" class="btn btn-lg btn-default" id="btnUploadPhoto"><span class="glyphicon glyphicon-arrow-up"></span> Upload</button>
         </div>
         <!-- End of upload-photo-button div -->
     </div>
@@ -26,7 +26,7 @@
 <!-- Modal start -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm" id="div-modal-dialog">
-      <!-- Modal content-->
+        <!-- Modal content start-->
         <div class="modal-content">
             <div class="modal-body">
                 <p>
@@ -35,6 +35,7 @@
                 </p>
            </div>
         </div>
+        <!-- Modal content end-->
     </div>
 </div>
 <!-- Modal end -->

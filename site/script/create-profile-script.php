@@ -42,11 +42,24 @@
         $password   =  filter_var($_SESSION['password']);
 
 
-        $isEmailExist  =  $database->select("MEMBER_MASTER", "MEMBER_ID", [
+        // registration by admin or user
+        if(isset($_SESSION["adminId"])){   // registration by admin
+            $createdBy  =  filter_var($_SESSION["adminId"]);
+        }
+        else{   // registration by user
+            $result  =  $database->query("SELECT AUTO_INCREMENT
+                FROM information_schema.tables
+                WHERE table_name = 'MEMBER_MASTER'")->fetchAll();
+
+            $createdBy  =  filter_var($result[0]["AUTO_INCREMENT"]);
+        }
+
+        // verifying $priEmail already exists or not in table MEMBER_MASTER
+        $isEmailExist  =  $database->has("MEMBER_MASTER", [
             "MEMBER_EMAIL" => $email
         ]);
 
-        if(empty($isEmailExist)){   // if MEMBER_EMAIL doesn't exist
+        if($isEmailExist == false){   // if MEMBER_EMAIL doesn't exist
             // data entry in MEMBER_MASTER table
             $isDataInserted = $database->insert("MEMBER_MASTER", [
                 "MEMBER_ID"                         => '',  //  auto increamented
@@ -73,37 +86,17 @@
                 "MEMBER_PHOTO"                      => '',
                 "MEMBER_ACCOUNT_STATUS"             => '0',
                 "MEMBER_CREATION_STAMP"             => $currentTimestamp,
-                "MEMBER_CREATED_BY"                 => '',
+                "MEMBER_CREATED_BY"                 => $createdBy,
                 "MEMBER_UPDATION_STAMP"             => '',
                 "MEMBER_UPDATED_BY"                 => ''
             ]);
-            $data = "('', '$memberType', '$salutation', '$firstName', '$middleName', '$lastName', '$dateOfBirth', '$country', '$state', '$district', '$city', '$address1', '$address2', '$zipCode', '$email', '$altEmail', '$phone', '$fax', '$password', '$secQues', '$secAns', '', '0', '', '', '', '')";
+            $data = "('', '$memberType', '$salutation', '$firstName', '$middleName', '$lastName', '$dateOfBirth', '$country', '$state', '$district', '$city', '$address1', '$address2', '$zipCode', '$email', '$altEmail', '$phone', '$fax', '$password', '$secQues', '$secAns', '', '0', '$currentTimestamp', '$createdBy', '', '')";
 
 
-
-            // registration by admin or user
-            if(isset($_SESSION["adminId"])){   // registration by admin
-                $createdBy  =  filter_var($_SESSION["adminId"]);
-            }
-            else{   // registration by user
-                $createdBy  =  $database->select("MEMBER_MASTER", "MEMBER_ID", [
-                    "MEMBER_EMAIL" => $email
-                ]);
-            }
-
-            //updating createdBy column in database
-            $isDataUpdated  =  $database->update("MEMBER_MASTER", [
-                "MEMBER_CREATED_BY"  =>  $createdBy[0]
-            ],[
-                "MEMBER_EMAIL"  =>  $email
-            ]);
-
-
-            //form datas are saved in database successfully
-            if($isDataInserted && $isDataUpdated){
+            if($isDataInserted){    // if datas are inserted successfully
                 echo json_encode(true);
             }
-            else{
+            else{    // if datas are not inserted
                 echo json_encode(false);
             }
         }

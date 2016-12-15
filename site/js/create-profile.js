@@ -258,12 +258,14 @@ $(document).ready(function(){
                         email : txtAltEmail.val()
                     },
                     success : function(response) {
-                        isValidAltEmail = $.parseJSON(response);
+                        var isEmailExist = $.parseJSON(response);
 
-                        if (isValidAltEmail) {     // emailId doesn't exist
+                        if (isEmailExist == false) {     // emailId doesn't exist
+                            isValidAltEmail = true;
                             //alert("email-id valid!")
                         }
                         else {     // emailId exists
+                            isValidAltEmail = false;
                             alert("email-id already exists!");
                         }
                     },
@@ -367,7 +369,7 @@ $(document).ready(function(){
                             data: $("#frmCreateProfile").serialize(),
                             success: function(response) {
                                 var resData = $.parseJSON(response);
-                                alert(resData);
+                                //alert(resData);
 
                                 if (resData) {  // data are saved in database
                                     $('#div-profile-photo').addClass('in');
@@ -391,14 +393,15 @@ $(document).ready(function(){
 
 
     $.ajax({
-        url: '/e-auction/site/script/email-fetching-script.php',
+        url: '/e-auction/site/script/validate-email-script.php',
         type: 'GET',
         success: function(response) {
-            var resData = $.parseJSON(response);
+            var isEmailExist = $.parseJSON(response);
 
-            if(resData){
+            if(isEmailExist){
                 $('#div-personal-info').removeClass('in');
                 $('#div-profile-photo').addClass('in');
+
                 $('#btnSaveCreateProfile').addClass('hide');
                 $('#btnCompleteRegistration').removeClass('hide');
             }
@@ -410,6 +413,14 @@ $(document).ready(function(){
 
     // btnComplete click
     $('#btnCompleteRegistration').click(function() {
+        $.ajax({
+            url: '/e-auction/site/script/unset-registration-session-variables-script.php',
+            type: 'GET',
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus+" Error: " + errorThrown);
+            }
+        });
+
         window.location.pathname = "/e-auction/index.php";
         alert("Registration successful");
     });

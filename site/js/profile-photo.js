@@ -4,12 +4,6 @@
 $(document).ready(function(){
 /* ---------------------------------- script start ------------------------------------ */
 
-    // importing all-validation-functions page to this page
-    var imported = document.createElement('script');
-    imported.src = '/e-auction/site/js/all-validation-functions.js';
-    document.head.appendChild(imported);
-
-
     // fetch profilephoto when load the page
     profilePhotoFetch();
 
@@ -25,8 +19,10 @@ $(document).ready(function(){
                 cache: false,
                 processData: false,
                 success: function(response) {
-                    alert(response);
-                    profilePhotoFetch();
+                    if(response){
+                        alert(response);
+                        profilePhotoFetch();
+                    }
                 },
                 error: function(){
                     alert("Error occured");

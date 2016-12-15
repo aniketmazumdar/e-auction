@@ -304,7 +304,7 @@
 
                 <!-- Start of submit-button div -->
                 <div class="row text-center">
-                    <button type="button" class="btn btn-lg" id="btnSaveEditProfile">Save</button>
+                    <button type="button" class="btn btn-lg btn-default" id="btnSaveEditProfile">Save</button>
                 </div>
                 <!-- End of submit-button div -->
             </form>

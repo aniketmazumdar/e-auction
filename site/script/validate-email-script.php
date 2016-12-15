@@ -2,21 +2,24 @@
     require_once "../include/db-session.inc.php";
     require_once "../include/jsonwrapper/jsonwrapper.inc.php";
 
-    // fetch the email from form-validation.js page
-    $email = strtolower(filter_input(INPUT_POST, "email"));
+    session_start();
+    if(isset($_SESSION["email"]) && isset($_SESSION["password"])){    //  if session data exists
+        // creating variables for session data
+        $email = filter_var($_SESSION['email']);
+    }
+    else{
+        // fetch the email from form-validation.js page
+        $email = strtolower(filter_input(INPUT_POST, "email"));
+    }
 
+    // create and initialise variable
+    $isEmailExist = false;
 
     // verifying $priEmail already exists or not in table MEMBER_MASTER
-    $email_arr = $database->select("MEMBER_MASTER", "MEMBER_ID",[
-        "MEMBER_EMAIL"=>$email
+    $isEmailExist = $database->has("MEMBER_MASTER", [
+        "MEMBER_EMAIL" => $email
     ]);
 
 
-
-    if (sizeof($email_arr) == 0) {  //  if entered email doesn't exist in database
-        echo json_encode(true);
-    }
-    else {      //  if entered email already exists in database
-        echo json_encode(false);
-    }
+    echo json_encode($isEmailExist);
 ?>

@@ -8,9 +8,11 @@
     $password       =   filter_input(INPUT_POST, "pwdPassword");
     $rememberMe     =   filter_input(INPUT_POST, "chkRemember_me");
 
+    // initialise new variables
+    $memberId = false;
 
     // verifying $priEmail already exists or not in table MEMBER_MASTER
-    $email_arr = $database->select("MEMBER_MASTER", "MEMBER_ID",[
+    $memberId = $database->get("MEMBER_MASTER", "MEMBER_ID",[
         "AND"=>[
             "MEMBER_EMAIL"          =>  $email,
             "MEMBER_PASSWORD"       =>  $password,
@@ -19,15 +21,15 @@
     ]);
 
 
-    if (sizeof($email_arr) == 1) {  //  if entered email exist in database
+    if ($memberId) {  //  if entered email exist in database
         // session create and stored member id
         session_start();
-        $_SESSION["memberId"] = $email_arr[0];
+        $_SESSION["memberId"] = $memberId;
 
         if($rememberMe){    // if checkbox is clicked
             // cookie create and stored data
             $cookie_name = "memberId";
-            $cookie_value = $email_arr[0];
+            $cookie_value = $memberId;
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");  // 86400 = 1 day
         }
 

@@ -114,30 +114,24 @@ nav {
 
 /*                                 TEXT FIELD
  -----------------------------------------------------------------------------------------*/
-input[type="text"]{
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-}
 
-input[type="text"]:focus{
-    width: 105%;
-}
 
 
 
 /*                                      BUTTON
  -----------------------------------------------------------------------------------------*/
-#div-body button{
-    background-color: #222;
-    color: #fff;
-    -webkit-transition: padding 0.5s ease-in-out;
-    transition: padding 0.5s ease-in-out;
-}
+#div-body .btn-default{
+     background-color: #222;
+     color: #fff;
+     -webkit-transition: padding 0.5s ease-in-out;
+     transition: padding 0.5s ease-in-out;
+ }
 
-#div-body button:hover{
-    padding-left: 30px;
-    padding-right: 30px;
-}
+#div-body .btn-default:hover{
+     background-color: #333;
+     padding-left: 30px;
+     padding-right: 30px;
+ }
 
 
 
@@ -190,7 +184,6 @@ label {
 /********************************************************************************************
                                         CREATE PROFILE
 ********************************************************************************************/
-
 #div-create-profile .panel-heading h1{
     font-size: 20px;
     text-transform: full-width;
@@ -206,16 +199,6 @@ label {
 
 #div-create-profile label span{
     color: #ff0000;
-}
-
-#frmProfilePhoto img{
-    height: 200px;
-    width: 200px;
-    padding: 10px;
-    background-color: #eee;
-    border: 2px solid #000;
-    border-radius: 20px;
-    cursor: pointer;
 }
 
 #frmProfilePhoto{
@@ -298,14 +281,16 @@ label {
 }
 
 #div-profile-photo img {
-    height: 180px;
-    width: 180px;
-    border: 3px solid #eee;
-    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    padding: 6px;
+    background-color: #ddd;
+    border: 3px solid #000;
+    border-radius: 30px;
     cursor: pointer;
 }
 
-.btn-group-lg>.btn, .btn-lg {
+.btn-group-lg>.btn-lg {
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.3333333;
@@ -323,14 +308,14 @@ label {
     color: #fff;
 }
 
-#div-mailing-address {
+#div-foot-section #div-mailing-address {
     border-radius: 15px;
     padding-top: 50px;
     padding-bottom: 40px;
     background-image: url("/e-auction/site/img/background-mailing-address.jpg");
 }
 
-#div-contact-address {
+#div-foot-section #div-contact-address {
     border-radius: 15px;
     padding-top: 64px;
     padding-bottom: 54px;

@@ -13,23 +13,26 @@
         $email  =   filter_var($_SESSION["email"]);
 
 
-        // fetching all data from database of selected member
-        $memberData_arr  =  $database->select("MEMBER_MASTER", "*", [
+        //  profile photo is fetched from database
+        $profilePhoto  =  $database->get("MEMBER_MASTER", "MEMBER_PHOTO", [
             "MEMBER_EMAIL" => $email
         ]);
 
 
-        //  profile photo is fetched frm database
-        $profilePhoto   =   array_column($memberData_arr, 'MEMBER_PHOTO');    // $memberData_arr[21] is MEMBER_PHOTO
+        if(empty($profilePhoto)){  // if MEMBER_PHOTO is empty
+            // getting SALUTATION_NAME from SALUTATION_MASTER of selected MEMBER_ID of MEMBER_MASTER by inner joining
+            $salutation  =  $database->get("SALUTATION_MASTER", [
+                "[>]MEMBER_MASTER" => ["SALUTATION_ID" => "MEMBER_SALUTATION"]
+            ],
+                "SALUTATION_GENDER",
+            [
+                "MEMBER_EMAIL" => $email
+            ]);
 
-        if(empty($profilePhoto[0])){  // if MEMBER_PHOTO is empty
-            //  salutation is fetched frm database
-            $salutation    =   array_column($memberData_arr, 'MEMBER_SALUTATION');     // $memberData_arr[2] is MEMBER_SALUTATION
-
-            if($salutation[0] == 1){   //  while MEMBER_SALUTATION is Mr.
+            if($salutation == "male"){   //  while MEMBER male
                 $profilePhoto   =   "/e-auction/site/img/logo-male.png";    // male icon
             }
-            else{   //  while MEMBER_SALUTATION is Ms. or Mrs.
+            else{   //  while MEMBER is female
                 $profilePhoto   =   "/e-auction/site/img/logo-female.png";  // female icon
             }
         }
